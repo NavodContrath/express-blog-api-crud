@@ -20,4 +20,17 @@ router.get('/:slug', (req, res) => {
     }
     res.json(foundPost)
 })
+//store
+router.post('/', (req, res) => {
+    res.send('add a new post')
+})
+//update
+router.put('/:slug', (req, res) => {
+    res.send(`update post with slug:${req.params.slug}`)
+})
+//modify
+router.patch('/:slug', (req, res) => {
+    res.send(`modify post with slug:${req.params.slug}`)
+})
+
 module.exports = router
