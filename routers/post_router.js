@@ -32,5 +32,23 @@ router.put('/:slug', (req, res) => {
 router.patch('/:slug', (req, res) => {
     res.send(`modify post with slug:${req.params.slug}`)
 })
+//destroy
+router.delete('/:slug', (req, res) => {
+    //find post by slug
+    const foundPost = posts.find(post => post.slug === req.params.slug)
+    //error handler
+    if (!foundPost) {
+        return res.status(404).json({
+            error: "404 not found",
+            message: "post not found"
+        })
+    }
+    //remove post from the array
+    posts.splice(posts.indexOf(foundPost), 1)
+    //log posts to verify right functioning
+    console.log(posts)
+    //response with no content
+    res.sendStatus(204)
+})
 
 module.exports = router
