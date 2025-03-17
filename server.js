@@ -7,5 +7,7 @@ const postRouter = require('./routers/post_router')
 app.listen(port, () => {
     console.log(`server is listening on http://localhost:${port}`)
 })
-//middleware
+//middleware to parse the content in json
+app.use(express.json())
+//middleware to define routes
 app.use('/posts', postRouter)

@@ -20,7 +20,19 @@ function show(req, res) {
 }
 //store
 function store(req, res) {
-    res.send('add a new post')
+    //creating new object with request body
+    const post = {
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    }
+    //add new post to posts arr
+    posts.push(post)
+    //results
+    console.log(posts)
+    res.json(post)
 }
 //update
 function update(req, res) {
