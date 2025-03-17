@@ -2,7 +2,18 @@ const posts = require('../data/posts')
 
 //index
 function index(req, res) {
-    res.json(posts)
+    //find post by tag
+    const filteredPost = posts.filter(post => post.tags === req.query.tag)
+    //error handler
+    if (!filteredPost) {
+        return res.status(404).json({
+            error: "404 not found",
+            message: "post not found"
+        })
+    }
+    //results
+    console.log(posts)
+    res.json(filteredPost)
 }
 //show
 function show(req, res) {
