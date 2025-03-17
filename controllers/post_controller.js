@@ -32,11 +32,28 @@ function store(req, res) {
     posts.push(post)
     //results
     console.log(posts)
-    res.json(post)
+    res.status(201).json(post)
 }
 //update
 function update(req, res) {
-    res.send(`update post with slug:${req.params.slug}`)
+    //find post
+    const foundPost = posts.find(post => req.params.slug === post.slug)
+    //error
+    if (!foundPost) {
+        return res.status(404).json({
+            error: "404 not found",
+            message: "post not found"
+        })
+    }
+    //updating post with new values
+    foundPost.title = req.body.title
+    foundPost.slug = req.body.slug
+    foundPost.content = req.body.content
+    foundPost.image = req.body.image
+    foundPost.tags = req.body.tags
+    //results
+    console.log(posts)
+    res.json(foundPost)
 }
 //modify
 function modify(req, res) {
