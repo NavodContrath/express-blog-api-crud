@@ -14,7 +14,9 @@ function index(req, res) {
      //results
      console.log(posts)
      res.json(filteredPost) */
-    throw new Error("Server error");
+    /* throw new Error("Server error"); */
+    res.json(posts)
+
 
 }
 //show
