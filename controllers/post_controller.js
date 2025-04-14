@@ -16,9 +16,9 @@ function index(req, res) {
      console.log(posts)
      res.json(filteredPost) */
     /* throw new Error("Server error"); */
-    // prepariamo la query
+
     const sql = 'SELECT * FROM pizzas';
-    // eseguiamo la query!
+
     connection.query(sql, (err, results) => {
         if (err) return res.status(500).json({ error: 'Database query failed' });
         res.json(results);
