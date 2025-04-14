@@ -18,6 +18,8 @@ app.use(cors({
 }))
 //middleware to parse the content in json
 app.use(express.json())
+//middleware for static
+app.use('/images', express.static('public/imgs'));
 //middleware to define routes
 app.use('/posts', postRouter)
 //error middlewares

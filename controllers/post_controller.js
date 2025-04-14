@@ -1,4 +1,5 @@
 const posts = require('../data/posts')
+const connection = require('../data/db')
 
 //index
 function index(req, res) {
@@ -15,23 +16,28 @@ function index(req, res) {
      console.log(posts)
      res.json(filteredPost) */
     /* throw new Error("Server error"); */
-    res.json(posts)
-
-
+    // prepariamo la query
+    const sql = 'SELECT * FROM pizzas';
+    // eseguiamo la query!
+    connection.query(sql, (err, results) => {
+        if (err) return res.status(500).json({ error: 'Database query failed' });
+        res.json(results);
+    })
 }
 //show
 function show(req, res) {
-    //find post by slug
-    const foundPost = posts.find(post => post.slug === req.params.slug)
-    //error handler
-    if (!foundPost) {
-        return res.status(404).json({
-            error: "404 not found",
-            message: "post not found"
-        })
-    }
-    //return post
-    res.json(foundPost)
+    /*  //find post by slug
+     const foundPost = posts.find(post => post.slug === req.params.slug)
+     //error handler
+     if (!foundPost) {
+         return res.status(404).json({
+             error: "404 not found",
+             message: "post not found"
+         })
+     }
+     //return post
+     res.json(foundPost) */
+
 }
 //store
 function store(req, res) {
